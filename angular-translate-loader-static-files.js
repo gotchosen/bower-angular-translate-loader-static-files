@@ -27,10 +27,16 @@ angular.module('pascalprecht.translate')
 
     var deferred = $q.defer();
 
+    // The keySuffix is optional and created for filehashes in production environments.
+    if (!angular.isString(options.keySuffix)) {
+      options.keySuffix = '';
+    }
+
     $http(angular.extend({
       url: [
         options.prefix,
         options.key,
+        options.keySuffix,
         options.suffix
       ].join(''),
       method: 'GET',
