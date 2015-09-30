@@ -41,7 +41,7 @@ angular.module('pascalprecht.translate')
       url: [
         options.prefix,
         options.key,
-        options.keySuffix,
+        keySuffix,
         options.suffix
       ].join(''),
       method: 'GET',
