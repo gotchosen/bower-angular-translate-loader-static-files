@@ -27,9 +27,14 @@ angular.module('pascalprecht.translate')
 
     var deferred = $q.defer();
 
-    // The keySuffix is optional and created for filehashes in production environments.
-    if (!angular.isString(options.keySuffix)) {
-      options.keySuffix = '';
+    // This allows us to use per-key file hashes in production/built environments
+    var keySuffix = '';
+    if (angular.isObject(options.filesMap)) {
+      angular.forEach(options.filesMap, function(value, key) {
+        if (key == options.key) {
+          keySuffix = value;
+        }
+      });
     }
 
     $http(angular.extend({
